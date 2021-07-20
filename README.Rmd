@@ -113,6 +113,47 @@ dataTable <- list(
                  attributeList = attributeList)
 ```
 
+### Now lets set the time and geographic coverage
+
+```{r, echo = TRUE}
+geographicDescription <- "Harvard Forest Greenhouse, Tom Swamp Tract (Harvard Forest)"
+
+
+coverage <- 
+  set_coverage(begin = '2012-06-01', end = '2013-12-31',
+               sci_names = "Sarracenia purpurea",
+               geographicDescription = geographicDescription,
+               west = -122.44, east = -117.15, 
+               north = 37.38, south = 30.00,
+               altitudeMin = 160, altitudeMaximum = 330,
+               altitudeUnits = "meter")
+```
+
+### and a list of authors
+
+The main author
+
+```{r, echo = T}
+R_person <- person(given = "Aaron", 
+                   family = "Ellison", 
+                   email = "fakeaddress@email.com", 
+                   role = "cre", 
+                  comment = c(ORCID = "0000-0003-4151-6081"))
+aaron <- as_emld(R_person)
+```
+
+and some collaborators
+
+```{r}
+others <- c(as.person("Benjamin Baiser"), as.person("Jennifer Sirota"))
+associatedParty <- as_emld(others)
+associatedParty[[1]]$role <- "Researcher"
+associatedParty[[2]]$role <- "Researcher"
+```
+
+
+
+
 ## Want to learn more about EML?
 
 * go to this [link](https://eml.ecoinformatics.org/)
